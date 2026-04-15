@@ -29,10 +29,21 @@ body{
 .wall-right { border-right: 3px solid #333; }
 .wall-bottom { border-bottom: 3px solid #333; }
 .wall-left { border-left: 3px solid #333; }
+.player-cell { background-color: #ffd1fd; }
 .info {
     text-align: center;
     font-family: Arial, sans-serif;
      margin-top: 20px;
 }
+ button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
 .start { background-color: #4CAF50; }
 .end { background-color: #f44336; }
