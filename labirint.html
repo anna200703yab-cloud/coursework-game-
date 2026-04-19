@@ -7,9 +7,22 @@
     <title> JavaScript Лабиринт </title>
 </head>
 <body>
-    <h1> JavaScript Лабиринт </h1>
- <div class="maze-container" id="maze"></div>
-    <script src="labirint.js"></script>
-<div class="info"> <button onclick="window.game.reset()">🔄 Начать заново</button></div>
+    <div class="maze-container" id="maze"></div>
     
+    <div class="info">
+        <div class="message" id="message"></div>  <!-- ✅ ИСПРАВЛЕНО: добавлен элемент -->
+        <button id="reset-btn">🔄 Начать заново</button>  <!-- ✅ ИСПРАВЛЕНО: добавлен id -->
+        <div class="controls">🎮 Используйте стрелки на клавиатуре для движения</div>
+    </div>
+    
+    <div id="questionModal" class="question-modal">
+        <div class="question-content">
+            <h3>📝 Ответьте на вопрос</h3>
+            <div class="question-text" id="questionText"></div>
+            <input type="text" id="answerInput" class="question-input" placeholder="Введите ваш ответ...">
+            <div class="answer-feedback" id="answerFeedback"></div>
+            </div>
+        </div>
+    </div>
+    <script src="labirint.js"></script>
 </body>
