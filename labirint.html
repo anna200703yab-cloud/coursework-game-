@@ -4,25 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="labirint.css">
-    <title> JavaScript Лабиринт </title>
+    <title>Лабиринт</title>
 </head>
 <body>
-    <div class="maze-container" id="maze"></div>
-    
-    <div class="info">
-        <div class="message" id="message"></div>  <!-- ✅ ИСПРАВЛЕНО: добавлен элемент -->
-        <button id="reset-btn">🔄 Начать заново</button>  <!-- ✅ ИСПРАВЛЕНО: добавлен id -->
-        <div class="controls">🎮 Используйте стрелки на клавиатуре для движения</div>
+    <div class="game-wrapper">
+        <div class="game-panel">
+          
+               <div class="score-board">
+                    <div class="score-item correct">✅ Правильно: <span id="correctCount">0</span></div>
+                    <div class="score-item wrong">❌ Неправильно: <span id="wrongCount">0</span></div>
+                    <div class="score-item points">⭐ Счёт: <span id="scoreValue">0</span></div>
+                    <div class="score-item moves">🚶 Ходов: <span id="movesCount">0</span></div>
+                </div>
+          
+            
+            <div class="maze-container" id="maze"></div>
+            <div class="info">
+                <div class="message" id="message"></div>
+                <button id="reset-btn">🔄 Начать заново</button>
+            </div>
+        </div>
     </div>
-    
+
+    <!-- НОВОЕ: Модальное окно для ввода имени -->
+    <div id="nameModal" class="name-modal">
+        <div class="name-content">
+            <h2>👋 Добро пожаловать в лабиринт!</h2>
+            <p>Представьтесь, пожалуйста, чтобы сохранить результат</p>
+            <div class="input-group">
+                <input type="text" id="firstNameInput" class="name-input" placeholder="Ваше имя" maxlength="20" autocomplete="off">
+                <input type="text" id="lastNameInput" class="name-input" placeholder="Ваша фамилия" maxlength="20" autocomplete="off">
+            </div>
+            <button id="startGameBtn" class="start-game-btn" disabled>🎮 Начать игру</button>
+            <div class="name-error" id="nameError"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно вопроса -->
     <div id="questionModal" class="question-modal">
-        <div class="question-content">
+        <div class="question-content" id="questionContent">
             <h3>📝 Ответьте на вопрос</h3>
             <div class="question-text" id="questionText"></div>
             <input type="text" id="answerInput" class="question-input" placeholder="Введите ваш ответ...">
             <div class="answer-feedback" id="answerFeedback"></div>
+        </div>
+    </div>
+
+    <!-- Модальное окно истории результатов -->
+    <div id="historyModal" class="history-modal">
+        <div class="history-content">
+            <div class="history-header">
+                <h2>🏆 ПОБЕДА! 🏆</h2>
+                <button class="close-history" id="closeHistoryBtn">&times;</button>
+            </div>
+            <div class="current-result">
+                <h3>Результат игрока: <span id="playerNameDisplay"></span></h3>
+                <div class="result-stats">
+                    <div>✅ Правильно: <strong id="finalCorrect">0</strong></div>
+                    <div>❌ Неправильно: <strong id="finalWrong">0</strong></div>
+                    <div>⭐ Счёт: <strong id="finalScore">0</strong></div>
+                    <div>🚶 Ходов: <strong id="finalMoves">0</strong></div>
+                    <div>📈 Точность: <strong id="finalAccuracy">0</strong>%</div>
+                </div>
+            </div>
+            <div class="history-list">
+                <h3>📋 История прошлых побед:</h3>
+                <div class="table-wrapper">
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Игрок</th>
+                                <th>Дата/время</th>
+                                <th>Счёт</th>
+                                <th>✅</th>
+                                <th>❌</th>
+                                <th>Ходы</th>
+                                <th>Точность</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <tr><td colspan="8" style="text-align:center;">Пока нет побед</td><tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="history-buttons">
+                <button id="clearHistoryBtn" class="clear-btn">🗑️ Очистить историю</button>
+                <button id="playAgainBtn" class="play-again-btn">🎮 Играть снова</button>
             </div>
         </div>
     </div>
+
     <script src="labirint.js"></script>
 </body>
+</html>
