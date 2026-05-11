@@ -50,38 +50,93 @@ class QuestionManager {
     
     initQuestions() {
         const baseQuestions = [
-            new Question('Какой оператор используется для объявления переменной?', 'let', 'Оператор let (или const, var)'),
-            new Question('Какой оператор используется для объявления константы?', 'const', 'Оператор const'),
-            new Question('Какой тип данных используется для хранения целых чисел?', 'number', 'Тип number'),
-            new Question('Какой тип данных хранит true/false?', 'boolean', 'Тип boolean'),
-            new Question('Какой оператор используется для сравнения "равно"?', '===', 'Оператор строгого равенства ==='),
-            new Question('Какой оператор используется для логического "И"?', '&&', 'Логический оператор && (and)'),
-            new Question('Какой оператор используется для логического "ИЛИ"?', '||', 'Логический оператор || (or)'),
-            new Question('Какой оператор используется для отрицания?', '!', 'Логический оператор ! (not)'),
-            new Question('Какой метод выводит сообщение в консоль?', 'console.log', 'Метод console.log()'),
-            new Question('Какой метод показывает всплывающее окно с сообщением?', 'alert', 'Метод alert()'),
-            new Question('Какой метод запрашивает ввод от пользователя?', 'prompt', 'Метод prompt()'),
-            new Question('Как создать массив в JavaScript?', '[]', 'Квадратные скобки [] или new Array()'),
-            new Question('Как получить длину массива?', 'length', 'Свойство length'),
-            new Question('Как добавить элемент в конец массива?', 'push', 'Метод push()'),
-            new Question('Как удалить последний элемент массива?', 'pop', 'Метод pop()'),
-            new Question('Как создать функцию?', 'function', 'Ключевое слово function'),
-            new Question('Как создать стрелочную функцию?', '=>', 'Стрелочная функция () => {}'),
-            new Question('Какой оператор используется для цикла с условием?', 'while', 'Оператор while'),
-            new Question('Какой оператор используется для цикла со счетчиком?', 'for', 'Оператор for'),
-            new Question('Какой оператор прерывает цикл?', 'break', 'Оператор break'),
-            new Question('Какой оператор пропускает итерацию цикла?', 'continue', 'Оператор continue'),
-            new Question('Как создать объект?', '{}', 'Фигурные скобки {} или new Object()'),
-            new Question('Как получить доступ к свойству объекта?', '.', 'Точечная нотация (obj.property)'),
-            new Question('Как создать условное выражение?', 'if', 'Оператор if/else'),
-            new Question('Какой оператор используется для выбора из нескольких вариантов?', 'switch', 'Оператор switch/case'),
-            new Question('Как преобразовать строку в число?', 'Number', 'Функция Number() или parseInt()'),
-            new Question('Как преобразовать число в строку?', 'toString', 'Метод toString()'),
-            new Question('Какой символ используется для однострочного комментария?', '//', 'Двойной слеш //'),
-            new Question('Какой символ используется для многострочного комментария?', '/*', '/* ... */'),
-            new Question('Как получить текущую дату и время?', 'Date', 'Объект new Date()')
-        ];
-        
+    // Раздел 4.1 - Роль JavaScript и история
+    new Question('Как называется последовательность инструкций для интерпретации?', 'скрипт', 'Сценарий или скрипт'),
+    new Question('Какой язык используется для клиентских сценариев?', 'javascript', 'JavaScript'),
+    new Question('Кто создал JavaScript?', 'Брендан Эйх', 'Брендан Эйх'),
+    new Question('В каком году создан JavaScript?', '1995', '1995 год'),
+    new Question('Как назывался JavaScript изначально?', 'Mocha', 'Mocha'),
+    new Question('Какая организация стандартизирует JavaScript?', 'ECMA', 'ECMA International'),
+    new Question('Как называется стандарт JavaScript?', 'ECMAScript', 'ECMAScript'),
+    new Question('Какая версия ECMAScript добавила классы?', 'ES6', 'ES6 или ECMAScript 2015'),
+    new Question('Что преобразует современный JavaScript в старый?', 'Babel', 'Транспилер Babel'),
+    new Question('Что добавляет отсутствующие методы в старые браузеры?', 'полифиллы', 'Полифиллы'),
+    new Question('Какой движок JS используется в Chrome?', 'V8', 'V8'),
+    new Question('Как называется главный справочник по JS?', 'MDN', 'MDN Web Docs'),
+    
+    // Раздел 4.2 - Подключение скриптов
+    new Question('Какой тег подключает JavaScript?', 'script', 'Тег script'),
+    new Question('Какой атрибут откладывает выполнение скрипта?', 'defer', 'defer'),
+    new Question('Какой атрибут загружает скрипт параллельно?', 'async', 'async'),
+    
+    // Раздел 4.3 - Переменные
+    new Question('Какое ключевое слово для изменяемой переменной?', 'let', 'let'),
+    new Question('Какое ключевое слово для константы?', 'const', 'const'),
+    new Question('Какое устаревшее ключевое слово для переменной?', 'var', 'var'),
+    new Question('Что имеет let, но не имеет var?', 'блок', 'Блочная область видимости'),
+    new Question('Как называется поднятие переменной?', 'hoisting', 'Поднятие (hoisting)'),
+    
+    // Раздел 4.4 - Типы данных
+    new Question('Какой тип для целых и дробных чисел?', 'number', 'Number'),
+    new Question('Какой тип для true/false?', 'boolean', 'Boolean'),
+    new Question('Какой тип для текста?', 'string', 'String'),
+    new Question('Какое значение у необъявленной переменной?', 'undefined', 'undefined'),
+    new Question('Какое значение означает "пусто"?', 'null', 'null'),
+    new Question('Какой тип для уникальных идентификаторов?', 'Symbol', 'Symbol'),
+    new Question('Какой тип для очень больших целых чисел?', 'BigInt', 'BigInt'),
+    new Question('Что возвращает typeof null?', 'object', 'object'),
+    new Question('Как проверить массив?', 'Array.isArray', 'Array.isArray()'),
+    new Question('Какой оператор строгого равенства?', '===', 'Тройное равно'),
+    new Question('Какие кавычки для шаблонных строк?', 'обратные', 'Обратные кавычки (`)'),
+    new Question('Какой метод преобразует строку в число?', 'Number', 'Number()'),
+    
+    // Раздел 4.5 - Функции
+    new Question('Что передаётся в другую функцию?', 'callback', 'Колбэк-функция'),
+    new Question('Какой синтаксис стрелочной функции?', 'стрелка', '=> (стрелка)'),
+    new Question('Что не создают стрелочные функции?', 'this', 'Собственный this'),
+    
+    // Раздел 4.6 - Условия
+    new Question('Какой оператор сокращает if-else?', 'тернарный', 'Тернарный оператор (?:)'),
+    
+    // Раздел 4.7 - Циклы
+    new Question('Какой цикл выполняется хотя бы раз?', 'do while', 'do...while'),
+    new Question('Какой цикл перебирает ключи объекта?', 'for in', 'for...in'),
+    new Question('Какой цикл перебирает значения?', 'for of', 'for...of'),
+    
+    // Раздел 4.8 - Массивы и объекты
+    new Question('Какой метод преобразует массив?', 'map', 'map()'),
+    new Question('Какой метод фильтрует массив?', 'filter', 'filter()'),
+    new Question('Какой метод сводит массив к значению?', 'reduce', 'reduce()'),
+    new Question('Какой метод выполняет действие для каждого элемента?', 'forEach', 'forEach()'),
+    new Question('Какой оператор копирует объект?', 'spread', 'Спред-оператор (...)'),
+    
+    // Раздел 4.9 - Деструктуризация
+    new Question('Что извлекает значения из массива?', 'деструктуризация', 'Деструктуризация'),
+    
+    // Раздел 4.10-4.11 - DOM
+    new Question('Как называется модель документа?', 'DOM', 'DOM'),
+    new Question('Как получить элемент по id?', 'getElementById', 'getElementById()'),
+    new Question('Какой метод выбирает по CSS-селектору?', 'querySelector', 'querySelector()'),
+    new Question('Как добавить обработчик события?', 'addEventListener', 'addEventListener()'),
+    new Question('Как отменить действие браузера?', 'preventDefault', 'preventDefault()'),
+    new Question('Какое событие после загрузки HTML?', 'DOMContentLoaded', 'DOMContentLoaded'),
+    new Question('Как добавить класс элементу?', 'classList.add', 'classList.add()'),
+    new Question('Как удалить элемент из DOM?', 'remove', 'remove()'),
+    
+    // Раздел 4.12 - JSON
+    new Question('Как расшифровывается JSON?', 'JavaScript Object Notation', 'JavaScript Object Notation'),
+    new Question('Как объект превратить в JSON?', 'stringify', 'JSON.stringify()'),
+    new Question('Как JSON превратить в объект?', 'parse', 'JSON.parse()'),
+    
+    // Раздел 4.13 - Асинхронность
+    new Question('Что представляет результат асинхронной операции?', 'Promise', 'Promise'),
+    new Question('Какой метод для HTTP-запросов?', 'fetch', 'fetch()'),
+    new Question('Какое слово делает функцию асинхронной?', 'async', 'async'),
+    new Question('Какое слово ждёт Promise?', 'await', 'await'),
+    
+    // Раздел 4.14 - Ошибки
+    new Question('Как ловить ошибки?', 'try catch', 'try...catch')
+];      
         for (const q of baseQuestions) {
             const colors = ['red', 'yellow', 'green'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -191,16 +246,27 @@ class Cell {
         this.row = row;
         this.col = col;
         this.walls = { ...walls };
+        this.wallsRevealed = { top: false, right: false, bottom: false, left: false };
     }
     
-    hasWall(direction) { return this.walls[direction]; }
+    hasWall(direction) { 
+        return this.walls[direction]; 
+    }
+    
+    isWallRevealed(direction) {
+        return this.wallsRevealed[direction];
+    }
+    
+    revealWall(direction) {
+        this.wallsRevealed[direction] = true;
+    }
     
     getWallClasses() {
         let classes = '';
-        if (this.walls.top) classes += 'wall-top ';
-        if (this.walls.right) classes += 'wall-right ';
-        if (this.walls.bottom) classes += 'wall-bottom ';
-        if (this.walls.left) classes += 'wall-left ';
+        if (this.walls.top && this.wallsRevealed.top) classes += 'wall-top ';
+        if (this.walls.right && this.wallsRevealed.right) classes += 'wall-right ';
+        if (this.walls.bottom && this.wallsRevealed.bottom) classes += 'wall-bottom ';
+        if (this.walls.left && this.wallsRevealed.left) classes += 'wall-left ';
         return classes.trim();
     }
     
@@ -214,20 +280,33 @@ class Player {
         this.col = startCol;
         this.startRow = startRow;
         this.startCol = startCol;
+        this.visitedCells = new Set();
+        this.addCurrentToVisited();
+    }
+    
+    addCurrentToVisited() {
+        this.visitedCells.add(`${this.row},${this.col}`);
     }
     
     moveTo(newRow, newCol) {
         this.row = newRow;
         this.col = newCol;
+        this.addCurrentToVisited();
     }
     
     reset() {
         this.row = this.startRow;
         this.col = this.startCol;
+        this.visitedCells.clear();
+        this.addCurrentToVisited();
     }
     
     getPosition() { return { row: this.row, col: this.col }; }
     isOnFinish() { return this.row === 4 && this.col === 4; }
+    
+    hasVisited(row, col) {
+        return this.visitedCells.has(`${row},${col}`);
+    }
 }
 
 class Maze {
@@ -266,6 +345,30 @@ class Maze {
     
     isValidPosition(row, col) {
         return row >= 0 && row < this.rows && col >= 0 && col < this.cols;
+    }
+    
+    revealWallsAroundPosition(row, col) {
+        const cell = this.getCell(row, col);
+        if (!cell) return;
+        
+        if (cell.hasWall('top')) cell.revealWall('top');
+        if (cell.hasWall('right')) cell.revealWall('right');
+        if (cell.hasWall('bottom')) cell.revealWall('bottom');
+        if (cell.hasWall('left')) cell.revealWall('left');
+        
+        const neighbors = [
+            { dir: 'top', row: row - 1, col: col, neighborWall: 'bottom' },
+            { dir: 'bottom', row: row + 1, col: col, neighborWall: 'top' },
+            { dir: 'left', row: row, col: col - 1, neighborWall: 'right' },
+            { dir: 'right', row: row, col: col + 1, neighborWall: 'left' }
+        ];
+        
+        for (const neighbor of neighbors) {
+            const neighborCell = this.getCell(neighbor.row, neighbor.col);
+            if (neighborCell && neighborCell.hasWall(neighbor.neighborWall)) {
+                neighborCell.revealWall(neighbor.neighborWall);
+            }
+        }
     }
 }
 
@@ -337,12 +440,12 @@ class GameUI {
 }
 
 class Game {
-   constructor(mazeData) {
+    constructor(mazeData) {
         this.maze = new Maze(mazeData);
         this.ui = new GameUI('maze', 'message');
         this.player = new Player(0, 0);
         this.questionManager = new QuestionManager();
-        this.gameActive = false; // Игра не активна до ввода имени
+        this.gameActive = false;
         this.pendingDirection = null;
         this.isWaitingForAnswer = false;
         this.originalMazeData = mazeData;
@@ -359,11 +462,29 @@ class Game {
         this.setupNameModal();
         this.handleKeyPress = this.handleKeyPress.bind(this);
         
-        this.loadResults();
         this.updateStatsDisplay();
         
-        // Показываем модальное окно для ввода имени
+        this.revealStartWalls();
+        
         this.showNameModal();
+    }
+    
+    sortAndLimitResults(results) {
+        results.sort((a, b) => {
+            if (b.score !== a.score) {
+                return b.score - a.score;
+            }
+            if (b.accuracy !== a.accuracy) {
+                return b.accuracy - a.accuracy;
+            }
+            return b.correct - a.correct;
+        });
+        return results.slice(0, 7);
+    }
+    
+    revealStartWalls() {
+        this.maze.revealWallsAroundPosition(0, 0);
+        this.ui.render(this.maze, this.player, this.gameActive);
     }
     
     setupNameModal() {
@@ -425,15 +546,10 @@ class Game {
     setupHistoryModal() {
         this.historyModal = document.getElementById('historyModal');
         this.closeHistoryBtn = document.getElementById('closeHistoryBtn');
-        this.clearHistoryBtn = document.getElementById('clearHistoryBtn');
         this.playAgainBtn = document.getElementById('playAgainBtn');
         
         if (this.closeHistoryBtn) {
             this.closeHistoryBtn.addEventListener('click', () => this.closeHistoryModal());
-        }
-        
-        if (this.clearHistoryBtn) {
-            this.clearHistoryBtn.addEventListener('click', () => this.clearResults());
         }
         
         if (this.playAgainBtn) {
@@ -443,7 +559,6 @@ class Game {
             });
         }
         
-        // Закрытие по клику вне окна
         if (this.historyModal) {
             this.historyModal.addEventListener('click', (e) => {
                 if (e.target === this.historyModal) {
@@ -460,43 +575,52 @@ class Game {
     }
     
     showHistoryModal() {
-    if (!this.historyModal) return;
-    
-    const accuracy = this.movesCount > 0 ? ((this.correctAnswers / this.movesCount) * 100).toFixed(1) : 0;
-    document.getElementById('playerNameDisplay').textContent = `${this.playerName} ${this.playerLastName}`;
-    document.getElementById('finalScore').textContent = this.score;
-    document.getElementById('finalCorrect').textContent = this.correctAnswers;
-    document.getElementById('finalWrong').textContent = this.wrongAnswers;
-    document.getElementById('finalMoves').textContent = this.movesCount;
-    document.getElementById('finalAccuracy').textContent = accuracy;
-    
-    this.loadResultsIntoModal();
-    this.historyModal.style.display = 'flex';
-}
-    
-    loadResultsIntoModal() {
-    const results = JSON.parse(localStorage.getItem('mazeResults') || '[]');
-    const tbody = document.getElementById('historyBody');
-    if (!tbody) return;
-    
-    if (results.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center;">Пока нет побед</td></tr>';
-        return;
+        if (!this.historyModal) return;
+        
+        const accuracy = this.movesCount > 0 ? ((this.correctAnswers / this.movesCount) * 100).toFixed(1) : 0;
+        document.getElementById('playerNameDisplay').textContent = `${this.playerName} ${this.playerLastName}`;
+        document.getElementById('finalScore').textContent = this.score;
+        document.getElementById('finalCorrect').textContent = this.correctAnswers;
+        document.getElementById('finalWrong').textContent = this.wrongAnswers;
+        document.getElementById('finalMoves').textContent = this.movesCount;
+        document.getElementById('finalAccuracy').textContent = accuracy;
+        
+        this.loadResultsIntoModal();
+        this.historyModal.style.display = 'flex';
     }
     
-    tbody.innerHTML = results.map((result, index) => `
-        <tr>
-            <td>${index + 1}</td>
-            <td><strong>${result.fullName || result.playerName + ' ' + result.playerLastName}</strong></td>
-            <td>${result.dateTime}</td>
-            <td><strong>${result.score}</strong></td>
-            <td>${result.correct}</td>
-            <td>${result.wrong}</td>
-            <td>${result.moves}</td>
-            <td>${result.accuracy}%</td>
-        </tr>
-    `).join('');
-}
+    loadResultsIntoModal() {
+        const results = JSON.parse(localStorage.getItem('mazeResults') || '[]');
+        const tbody = document.getElementById('historyBody');
+        if (!tbody) return;
+        
+        const sortedResults = this.sortAndLimitResults([...results]);
+        
+        if (sortedResults.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center;">Пока нет побед</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = sortedResults.map((result, index) => {
+            let medal = '';
+            if (index === 0) medal = '🥇 ';
+            else if (index === 1) medal = '🥈 ';
+            else if (index === 2) medal = '🥉 ';
+            
+            return `
+                <tr>
+                    <td>${medal}${index + 1}</td>
+                    <td><strong>${result.fullName || result.playerName + ' ' + result.playerLastName}</strong></td>
+                    <td>${result.dateTime}</td>
+                    <td><strong style="color: #4CAF50;">${result.score}</strong></td>
+                    <td>${result.correct}</td>
+                    <td>${result.wrong}</td>
+                    <td>${result.moves}</td>
+                    <td>${result.accuracy}%</td>
+                </tr>
+            `;
+        }).join('');
+    }
     
     handleKeyPress(event) {
         if (!this.gameActive || this.isWaitingForAnswer) return;
@@ -556,6 +680,7 @@ class Game {
         
         if (moveData) {
             this.player.moveTo(moveData.newRow, moveData.newCol);
+            this.maze.revealWallsAroundPosition(moveData.newRow, moveData.newCol);
             this.ui.render(this.maze, this.player, this.gameActive);
             this.checkWin();
         }
@@ -584,7 +709,6 @@ class Game {
             this.ui.updateMessage(`🎉 ПОБЕДА! Счёт: ${this.score} | Точность: ${accuracy}% 🎉`, true);
             this.ui.render(this.maze, this.player, this.gameActive);
             
-            // ПОКАЗЫВАЕМ МОДАЛЬНОЕ ОКНО С ИСТОРИЕЙ
             setTimeout(() => {
                 this.showHistoryModal();
             }, 500);
@@ -592,58 +716,46 @@ class Game {
     }
     
     saveResult() {
-    const now = new Date();
-    const dateTime = now.toLocaleString('ru-RU');
-    const accuracy = this.movesCount > 0 ? ((this.correctAnswers / this.movesCount) * 100).toFixed(1) : 0;
-    
-    const result = {
-        id: Date.now(),
-        playerName: this.playerName,
-        playerLastName: this.playerLastName,
-        fullName: `${this.playerName} ${this.playerLastName}`,
-        dateTime: dateTime,
-        score: this.score,
-        correct: this.correctAnswers,
-        wrong: this.wrongAnswers,
-        moves: this.movesCount,
-        accuracy: accuracy
-    };
-    
-    let results = JSON.parse(localStorage.getItem('mazeResults') || '[]');
-    results.unshift(result);
-    results = results.slice(0, 10);
-    localStorage.setItem('mazeResults', JSON.stringify(results));
-}
-    
-    loadResults() {
-        // Пустой метод, сохраняем для совместимости
+        const now = new Date();
+        const dateTime = now.toLocaleString('ru-RU');
+        const accuracy = this.movesCount > 0 ? ((this.correctAnswers / this.movesCount) * 100).toFixed(1) : 0;
+        
+        const result = {
+            id: Date.now(),
+            playerName: this.playerName,
+            playerLastName: this.playerLastName,
+            fullName: `${this.playerName} ${this.playerLastName}`,
+            dateTime: dateTime,
+            score: this.score,
+            correct: this.correctAnswers,
+            wrong: this.wrongAnswers,
+            moves: this.movesCount,
+            accuracy: accuracy
+        };
+        
+        let results = JSON.parse(localStorage.getItem('mazeResults') || '[]');
+        results.push(result);
+        results = this.sortAndLimitResults(results);
+        localStorage.setItem('mazeResults', JSON.stringify(results));
     }
-    
-    clearResults() {
-    if (confirm('Вы уверены, что хотите очистить всю историю побед?')) {
-        localStorage.removeItem('mazeResults');
-        this.loadResultsIntoModal();
-        this.ui.showTemporaryMessage('🗑️ История побед очищена!', 1500);
-    }
-}
-
     
     reset() {
-    this.player.reset();
-    this.gameActive = true;
-    this.isWaitingForAnswer = false;
-    this.pendingDirection = null;
-    
-    this.score = 0;
-    this.correctAnswers = 0;
-    this.wrongAnswers = 0;
-    this.movesCount = 0;
-    this.updateStatsDisplay();
-    
-    this.maze = new Maze(this.originalMazeData);
-    this.ui.render(this.maze, this.player, this.gameActive);
-    this.ui.updateMessage(`${this.playerName} ${this.playerLastName}, игра сброшена! Используйте стрелки для движения.`);
-}
+        this.player.reset();
+        this.gameActive = true;
+        this.isWaitingForAnswer = false;
+        this.pendingDirection = null;
+        
+        this.score = 0;
+        this.correctAnswers = 0;
+        this.wrongAnswers = 0;
+        this.movesCount = 0;
+        this.updateStatsDisplay();
+        
+        this.maze = new Maze(this.originalMazeData);
+        this.revealStartWalls();
+        
+        this.ui.updateMessage(`${this.playerName} ${this.playerLastName}, игра сброшена! Используйте стрелки для движения.`);
+    }
     
     start() {
         this.gameActive = true;
@@ -693,5 +805,4 @@ const mazeWalls = [
 ];
 
 const game = new Game(mazeWalls);
-game.start();
 window.game = game;
