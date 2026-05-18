@@ -21,10 +21,19 @@ class ColoredQuestion extends Question {
     
     getPoints() {
         switch(this.colorType) {
-            case 'red': return -1;
+            case 'red': return 1;    // За правильный ответ на ловушку даём +1
             case 'yellow': return 2;
             case 'green': return 1;
             default: return 1;
+        }
+    }
+    
+    getPenalty() {
+        switch(this.colorType) {
+            case 'red': return -1;   // За неправильный ответ на ловушку отнимаем 1
+            case 'yellow': return 0;
+            case 'green': return 0;
+            default: return 0;
         }
     }
     
@@ -173,8 +182,8 @@ class QuestionManager {
         questionContent.className = 'question-content ' + this.currentQuestion.getColorClass();
         
         let pointsText = '';
-        if (this.currentQuestion.colorType === 'red') pointsText = '🔴 ЛОВУШКА! -1 балл';
-        else if (this.currentQuestion.colorType === 'yellow') pointsText = '🟡 БОНУС! +2 балла';
+        if (this.currentQuestion.colorType === 'red') pointsText = '🔴 ЛОВУШКА! +1 за правильный, -1 за ошибку';
+        else if (this.currentQuestion.colorType === 'yellow') pointsText = '🟡 БОНУС! +2 балла за правильный ответ';
         else pointsText = '🟢 Обычный вопрос +1 балл';
         
         questionText.innerHTML = `<div style="margin-bottom:10px; font-size:14px;">${pointsText}</div>${this.currentQuestion.questionText}`;
@@ -204,16 +213,31 @@ class QuestionManager {
         if (!this.currentQuestion) return;
         
         const isCorrect = this.currentQuestion.checkAnswer(userAnswer);
-        const pointsEarned = isCorrect ? this.currentQuestion.points : 0;
+        // Для правильного ответа - баллы по getPoints()
+        // Для неправильного - штраф по getPenalty()
+        const pointsEarned = isCorrect ? this.currentQuestion.points : this.currentQuestion.getPenalty();
         const moveDataToSend = this.pendingMove;
         
         let feedbackMessage = '';
         if (isCorrect) {
-            const pointsSymbol = pointsEarned > 0 ? `+${pointsEarned}` : pointsEarned;
-            feedbackMessage = `✅ Правильно! ${pointsSymbol} балл(ов). ${this.currentQuestion.explanation}`;
+            let pointsText = pointsEarned > 0 ? `+${pointsEarned}` : `${pointsEarned}`;
+            const pointsAbs = Math.abs(pointsEarned);
+            let pointsWord = 'баллов';
+            if (pointsAbs === 1) pointsWord = 'балл';
+            else if (pointsAbs >= 2 && pointsAbs <= 4) pointsWord = 'балла';
+            
+            feedbackMessage = `✅ Правильно! ${pointsText} ${pointsWord}. ${this.currentQuestion.explanation}`;
             answerFeedback.className = 'answer-feedback correct-answer';
         } else {
-            feedbackMessage = `❌ Неправильно! Правильный ответ: ${this.currentQuestion.correctAnswer}. 0 баллов. ${this.currentQuestion.explanation}`;
+            let penaltyValue = this.currentQuestion.getPenalty();
+            let penaltyText = '';
+            if (penaltyValue < 0) {
+                penaltyText = ` Штраф: ${penaltyValue} балл!`;
+            } else {
+                penaltyText = ' 0 баллов.';
+            }
+            
+            feedbackMessage = `❌ Неправильно! Правильный ответ: ${this.currentQuestion.correctAnswer}.${penaltyText} ${this.currentQuestion.explanation}`;
             answerFeedback.className = 'answer-feedback wrong-answer';
         }
         
@@ -668,11 +692,17 @@ class Game {
         if (isCorrect) {
             this.correctAnswers++;
             this.score += pointsEarned;
-            const pointText = pointsEarned > 0 ? `+${pointsEarned}` : pointsEarned;
+            let pointText = pointsEarned > 0 ? `+${pointsEarned}` : `${pointsEarned}`;
             this.ui.showTemporaryMessage(`✅ ${pointText} балла(ов)! Счёт: ${this.score}`, 1000);
         } else {
             this.wrongAnswers++;
-            this.ui.showTemporaryMessage(`❌ Неправильно! 0 баллов. Счёт: ${this.score}`, 1500);
+            this.score += pointsEarned; // pointsEarned будет отрицательным для красных вопросов
+            let penaltyText = pointsEarned < 0 ? `${pointsEarned}` : '0';
+            if (pointsEarned < 0) {
+                this.ui.showTemporaryMessage(`❌ Неправильно! ${penaltyText} балл! Счёт: ${this.score}`, 1500);
+            } else {
+                this.ui.showTemporaryMessage(`❌ Неправильно! 0 баллов. Счёт: ${this.score}`, 1500);
+            }
         }
         
         this.movesCount++;
@@ -760,7 +790,7 @@ class Game {
     start() {
         this.gameActive = true;
         this.ui.render(this.maze, this.player, this.gameActive);
-        this.ui.updateMessage('Используйте стрелки на клавиатуре! 🔴 -1, 🟡 +2, 🟢 +1 балл за правильный ответ!');
+        this.ui.updateMessage('Используйте стрелки на клавиатуре! 🔴 +1 за правильный, -1 за ошибку | 🟡 +2 | 🟢 +1');
         document.removeEventListener('keydown', this.handleKeyPress);
         document.addEventListener('keydown', this.handleKeyPress);
     }
